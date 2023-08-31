@@ -1,0 +1,46 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<core7_mvc_mssql.Data.Product>
+
+@{
+    ViewData["Title"] = "Product Listings";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Unit</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (var prods in Model)
+    {
+        <tr>
+        <td>@Html.DisplayFor(modelItem => prods.Id)</td>
+        <td>@Html.DisplayFor(modelItem => prods.Prod_desc)</td>
+        <td>@Html.DisplayFor(modelItem => prods.Prod_stockqty)</td>
+        <td>@Html.DisplayFor(modelItem => prods.Prod_unit)</td>
+        <td>@Html.DisplayFor(modelItem => prods.Prod_sell)</td>
+        </tr>        
+    }
+
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+<ul class="pagination">
+    <li class="page-item"><a class="page-link" asp-action="LastPage">Last</a></li>
+    <li class="page-item"><a class="page-link" asp-action="PrevPage">Previous</a></li>
+    <li class="page-item"><a class="page-link" asp-action="Nextpage">Next</a></li>
+    <li class="page-item"><a class="page-link" asp-action="FirstPage">First</a></li>
+    <li class="page-item page-link text-danger">Page&nbsp;@ViewData["page"] of&nbsp;@ViewData["totpage"]</li>
+
+</ul>
+</nav>

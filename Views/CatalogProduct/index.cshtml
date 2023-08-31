@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<core7_mvc_mssql.Data.Product>
+
+@{
+    ViewData["Title"] = "Product Catalogs";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="container-fluid xheight">
+
+    <div class="card-group">
+
+    @foreach (var prods in Model)
+    {
+
+        <div class="card">
+          <img src="@prods.Prod_pic" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Descriptions</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => prods.Prod_desc)</p>
+        </div>
+
+        <div class="card-footer">
+            <p class="card-text text-danger"><span class="text-dark">PRICE :</span>&nbsp;<strong>@Html.DisplayFor(modelItem => prods.Prod_sell)</strong></p>
+        </div>  
+
+        </div>
+    }
+    
+    </div>    
+
+<nav aria-label="Page navigation example">
+<ul class="pagination mt-3">
+    <li class="page-item"><a class="page-link" asp-action="LastPage">Last</a></li>
+    <li class="page-item"><a class="page-link" asp-action="PrevPage">Previous</a></li>
+    <li class="page-item"><a class="page-link" asp-action="Nextpage">Next</a></li>
+    <li class="page-item"><a class="page-link" asp-action="FirstPage">First</a></li>
+    <li class="page-item page-link text-danger">Page&nbsp;@ViewData["page"] of&nbsp;@ViewData["totpage"]</li>
+
+</ul>
+</nav>
+
+
+</div>
+

@@ -1,0 +1,21 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@model core7_mvc_mssql.Models.ProductSearch
+
+@{
+    ViewData["Title"] = "Search Product";
+}
+
+
+<div class="container-fluid">
+    <h4 class="text-left">@ViewData["Title"]</h4>
+    <form asp-controller="SearchProduct" asp-action="Search" method="post">
+        <div class="mb-3 w-50">
+            <label class="text-primary">Search Description</label>
+            <input asp-for="Product_desc" type="text" required class="form-control" id="description" placeholder="enter search key">
+        </div>
+       <button type="submit" class="btn btn-primary">search</button>
+    </form>
+
+    <div class="w-100 text-danger">message</div>
+</div>

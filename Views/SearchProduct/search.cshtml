@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+
+@model IEnumerable<core7_mvc_mssql.Data.Product>
+
+@{
+            ViewData["Title"] = "Search Products";
+
+            <div class="container-fluid xheight">
+
+                <h4>@ViewData["Title"]</h4>
+                <div class="card-group">
+                @foreach (var prods in Model)
+                {
+
+                    <div class="card">
+                    <img src="@prods.Prod_pic" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Descriptions</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => prods.Prod_desc)</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <p class="card-text text-danger"><span class="text-dark">PRICE :</span>&nbsp;<strong>@Html.DisplayFor(modelItem => prods.Prod_sell)</strong></p>
+                    </div>  
+
+                    </div>
+                }
+                
+                </div>
+               <button OnClick="window.history.back()" type="button" class="btn btn-primary">Go back to search</button>
+            </div>
+
+}
+ 

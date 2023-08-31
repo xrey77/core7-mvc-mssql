@@ -1,0 +1,64 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@model core7_mvc_mssql.Data.UserProfile
+
+@{
+    ViewData["Title"] = "Personal Data";
+}
+
+@if(ViewData["message"]!=null)
+{ 
+
+<div class="alert alert-size alert-dismissible mt-1 fade show" role="alert">
+  <strong>@ViewData["message"]</strong>
+  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+}
+
+<h3 class="userdataTop" >@ViewData["Title"]</h3>
+
+<form asp-controller="User" asp-action="Index" enctype="multipart/form-data" method="post">
+<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <label class="text-primary">First Name</label>
+            <input asp-for="Firstname" type="text" required class="form-control" id="fname" placeholder="enter First Name">
+        </div>
+        <div class="mb-3">
+            <label class="text-primary">Last Name</label>
+            <input asp-for="Lastname" type="text" required class="form-control" id="lname" placeholder="enter Last Name">
+        </div>
+
+    </div>
+    <div class="col">
+        @try {
+            <img id="pix" class="user" src="@Model.Userpic" alt=""/>
+        } catch(Exception){
+            <img id="pix" class="user" src="/images/users/pix.png" alt=""/>
+        }
+        <div class="mb-3 mt-2">
+            <label class="text-primary">Change Profile Picture</label>
+            <input onchange="loadpicture()" asp-for="Userpic" class="form-control form-control-sm" id="formFileSm" type="file">
+        </div>        
+    </div>
+</div>
+    <button type="submit" class="btn btn-primary ">save</button>
+    <button type="button" class="btn btn-primary " onclick="goBack()">back</button>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+        <script type="text/javascript">
+            function goBack() {
+                window.history.back();
+            }        
+
+            function loadpicture() {
+                $("#pix").attr('src',URL.createObjectURL(event.target.files[0]));
+            }
+  
+        </script>
+}
